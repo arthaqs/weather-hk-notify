@@ -22,44 +22,74 @@ data class DayForecast(
     val tempMax: Double,
     val tempMin: Double,
     val description: String,
-    val precipitation: Double
+    val precipitation: Double,
+    val available: Boolean = true
 )
 
 object WeatherApi {
 
     private const val LAT = 50.2092
     private const val LON = 15.8328
-    private const val START = "2026-06-08"
-    private const val END = "2026-06-14"
+
+    // Target week — hardcoded, app is single-purpose
+    private val TARGET_DATES = listOf(
+        "2026-06-08", "2026-06-09", "2026-06-10",
+        "2026-06-11", "2026-06-12", "2026-06-13", "2026-06-14"
+    )
 
     private val client = OkHttpClient()
     private val gson = Gson()
 
     fun fetchForecast(): List<DayForecast>? {
+        // Use forecast_days=16 (max) — avoids 400 when end date out of range
         val url = "https://api.open-meteo.com/v1/forecast" +
             "?latitude=$LAT&longitude=$LON" +
             "&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_sum" +
             "&timezone=Europe%2FPrague" +
-            "&start_date=$START&end_date=$END"
+            "&forecast_days=16"
 
         return try {
             val request = Request.Builder().url(url).build()
             val response = client.newCall(request).execute()
-            val body = response.body?.string() ?: return null
+            if (!response.isSuccessful) return fallbackUnavailable()
+            val body = response.body?.string() ?: return fallbackUnavailable()
             val data = gson.fromJson(body, WeatherResponse::class.java)
-            data.daily.time.mapIndexed { i, date ->
-                DayForecast(
-                    date = date,
-                    tempMax = data.daily.tempMax[i],
-                    tempMin = data.daily.tempMin[i],
-                    description = weatherCodeToText(data.daily.weatherCode[i]),
-                    precipitation = data.daily.precipitation[i]
-                )
+
+            // Index available dates
+            val byDate = data.daily.time.mapIndexed { i, date -> date to i }.toMap()
+
+            TARGET_DATES.map { date ->
+                val i = byDate[date]
+                if (i != null) {
+                    DayForecast(
+                        date = date,
+                        tempMax = data.daily.tempMax[i],
+                        tempMin = data.daily.tempMin[i],
+                        description = weatherCodeToText(data.daily.weatherCode[i]),
+                        precipitation = data.daily.precipitation[i],
+                        available = true
+                    )
+                } else {
+                    // Date not yet in forecast window
+                    DayForecast(
+                        date = date,
+                        tempMax = 0.0,
+                        tempMin = 0.0,
+                        description = "brzy k dispozici",
+                        precipitation = 0.0,
+                        available = false
+                    )
+                }
             }
         } catch (e: Exception) {
             null
         }
     }
+
+    private fun fallbackUnavailable(): List<DayForecast> =
+        TARGET_DATES.map { date ->
+            DayForecast(date, 0.0, 0.0, "brzy k dispozici", 0.0, false)
+        }
 
     private fun weatherCodeToText(code: Int): String = when (code) {
         0 -> "Jasno ☀️"

@@ -24,14 +24,14 @@ class WeatherWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params
     }
 
     private fun buildNotificationText(forecasts: List<DayForecast>): String {
-        val days = mapOf(
-            "Mon" to "Po", "Tue" to "Út", "Wed" to "St",
-            "Thu" to "Čt", "Fri" to "Pá", "Sat" to "So", "Sun" to "Ne"
-        )
         return forecasts.joinToString("\n") { f ->
             val date = f.date.substring(5) // MM-DD
-            "${date}: ${f.description} ${f.tempMax.toInt()}°/${f.tempMin.toInt()}°C" +
-                if (f.precipitation > 0) " 💧${f.precipitation}mm" else ""
+            if (f.available) {
+                "${date}: ${f.description} ${f.tempMax.toInt()}°/${f.tempMin.toInt()}°C" +
+                    if (f.precipitation > 0) " 💧${f.precipitation}mm" else ""
+            } else {
+                "${date}: ${f.description}"
+            }
         }
     }
 
