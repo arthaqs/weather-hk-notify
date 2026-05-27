@@ -22,6 +22,7 @@ data class DayForecast(
     val tempMax: Double,
     val tempMin: Double,
     val description: String,
+    val icon: String,
     val precipitation: Double,
     val available: Boolean = true
 )
@@ -61,11 +62,13 @@ object WeatherApi {
             TARGET_DATES.map { date ->
                 val i = byDate[date]
                 if (i != null) {
+                    val code = data.daily.weatherCode[i]
                     DayForecast(
                         date = date,
                         tempMax = data.daily.tempMax[i],
                         tempMin = data.daily.tempMin[i],
-                        description = weatherCodeToText(data.daily.weatherCode[i]),
+                        description = weatherCodeToText(code),
+                        icon = weatherCodeToIcon(code),
                         precipitation = data.daily.precipitation[i],
                         available = true
                     )
@@ -76,6 +79,7 @@ object WeatherApi {
                         tempMax = 0.0,
                         tempMin = 0.0,
                         description = "brzy k dispozici",
+                        icon = "?",
                         precipitation = 0.0,
                         available = false
                     )
@@ -88,20 +92,34 @@ object WeatherApi {
 
     private fun fallbackUnavailable(): List<DayForecast> =
         TARGET_DATES.map { date ->
-            DayForecast(date, 0.0, 0.0, "brzy k dispozici", 0.0, false)
+            DayForecast(date, 0.0, 0.0, "brzy k dispozici", "?", 0.0, false)
         }
 
+    private fun weatherCodeToIcon(code: Int): String = when (code) {
+        0 -> "☀️"
+        1, 2 -> "🌤️"
+        3 -> "☁️"
+        45, 48 -> "🌫️"
+        51, 53, 55 -> "🌦️"
+        61, 63, 65 -> "🌧️"
+        71, 73, 75 -> "❄️"
+        80, 81, 82 -> "🌦️"
+        95 -> "⛈️"
+        96, 99 -> "⛈️"
+        else -> "🌥️"
+    }
+
     private fun weatherCodeToText(code: Int): String = when (code) {
-        0 -> "Jasno ☀️"
-        1, 2 -> "Skoro jasno 🌤️"
-        3 -> "Oblačno ☁️"
-        45, 48 -> "Mlha 🌫️"
-        51, 53, 55 -> "Mrholení 🌦️"
-        61, 63, 65 -> "Déšť 🌧️"
-        71, 73, 75 -> "Sněžení ❄️"
-        80, 81, 82 -> "Přeháňky 🌦️"
-        95 -> "Bouřka ⛈️"
-        96, 99 -> "Bouřka s kroupami ⛈️"
+        0 -> "Jasno"
+        1, 2 -> "Skoro jasno"
+        3 -> "Oblačno"
+        45, 48 -> "Mlha"
+        51, 53, 55 -> "Mrholení"
+        61, 63, 65 -> "Déšť"
+        71, 73, 75 -> "Sněžení"
+        80, 81, 82 -> "Přeháňky"
+        95 -> "Bouřka"
+        96, 99 -> "Bouřka s kroupami"
         else -> "Proměnlivě"
     }
 }

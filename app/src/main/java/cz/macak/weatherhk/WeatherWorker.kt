@@ -25,12 +25,12 @@ class WeatherWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params
 
     private fun buildNotificationText(forecasts: List<DayForecast>): String {
         return forecasts.joinToString("\n") { f ->
-            val date = f.date.substring(5) // MM-DD
+            val day = f.date.substring(8).trimStart('0') // jen číslo dne, bez leading zero
             if (f.available) {
-                "${date}: ${f.description} ${f.tempMax.toInt()}°/${f.tempMin.toInt()}°C" +
-                    if (f.precipitation > 0) " 💧${f.precipitation}mm" else ""
+                val rain = if (f.precipitation > 0) " 💧" else ""
+                "$day  ${f.icon}  ${f.tempMax.toInt()}°/${f.tempMin.toInt()}°$rain"
             } else {
-                "${date}: ${f.description}"
+                "$day  ?"
             }
         }
     }
