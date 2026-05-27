@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#FF1A1A2E"
+    android:padding="8dp">
+
+    <!-- Day 1 -->
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+        <TextView android:id="@+id/day1" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFAAAAAA" android:textSize="12sp" android:gravity="center"/>
+        <TextView android:id="@+id/icon1" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textSize="20sp" android:gravity="center"/>
+        <TextView android:id="@+id/max1" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFFFFFFF" android:textSize="13sp" android:textStyle="bold" android:gravity="center"/>
+        <TextView android:id="@+id/min1" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FF888888" android:textSize="12sp" android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- Day 2 -->
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+        <TextView android:id="@+id/day2" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFAAAAAA" android:textSize="12sp" android:gravity="center"/>
+        <TextView android:id="@+id/icon2" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textSize="20sp" android:gravity="center"/>
+        <TextView android:id="@+id/max2" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFFFFFFF" android:textSize="13sp" android:textStyle="bold" android:gravity="center"/>
+        <TextView android:id="@+id/min2" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FF888888" android:textSize="12sp" android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- Day 3 -->
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+        <TextView android:id="@+id/day3" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFAAAAAA" android:textSize="12sp" android:gravity="center"/>
+        <TextView android:id="@+id/icon3" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textSize="20sp" android:gravity="center"/>
+        <TextView android:id="@+id/max3" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFFFFFFF" android:textSize="13sp" android:textStyle="bold" android:gravity="center"/>
+        <TextView android:id="@+id/min3" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FF888888" android:textSize="12sp" android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- Day 4 -->
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+        <TextView android:id="@+id/day4" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFAAAAAA" android:textSize="12sp" android:gravity="center"/>
+        <TextView android:id="@+id/icon4" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textSize="20sp" android:gravity="center"/>
+        <TextView android:id="@+id/max4" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFFFFFFF" android:textSize="13sp" android:textStyle="bold" android:gravity="center"/>
+        <TextView android:id="@+id/min4" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FF888888" android:textSize="12sp" android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- Day 5 -->
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+        <TextView android:id="@+id/day5" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFAAAAAA" android:textSize="12sp" android:gravity="center"/>
+        <TextView android:id="@+id/icon5" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textSize="20sp" android:gravity="center"/>
+        <TextView android:id="@+id/max5" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFFFFFFF" android:textSize="13sp" android:textStyle="bold" android:gravity="center"/>
+        <TextView android:id="@+id/min5" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FF888888" android:textSize="12sp" android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- Day 6 -->
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+        <TextView android:id="@+id/day6" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFAAAAAA" android:textSize="12sp" android:gravity="center"/>
+        <TextView android:id="@+id/icon6" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textSize="20sp" android:gravity="center"/>
+        <TextView android:id="@+id/max6" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFFFFFFF" android:textSize="13sp" android:textStyle="bold" android:gravity="center"/>
+        <TextView android:id="@+id/min6" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FF888888" android:textSize="12sp" android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- Day 7 -->
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+        <TextView android:id="@+id/day7" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFAAAAAA" android:textSize="12sp" android:gravity="center"/>
+        <TextView android:id="@+id/icon7" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textSize="20sp" android:gravity="center"/>
+        <TextView android:id="@+id/max7" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FFFFFFFF" android:textSize="13sp" android:textStyle="bold" android:gravity="center"/>
+        <TextView android:id="@+id/min7" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="#FF888888" android:textSize="12sp" android:gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>
